@@ -22,7 +22,7 @@ router.post('/', function(req, res) {
 
 //GET all selected trips
 router.get('/cart', function (req,res){
-    Selectedtrip.find()
+    Selectedtrip.find({isPaid:false})
     .populate('trip')
     .then(data => {
         res.json({trips : data})
