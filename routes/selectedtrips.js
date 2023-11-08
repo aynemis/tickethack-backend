@@ -2,11 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 const Selectedtrip = require ('../models/selectedtrips');
-<<<<<<< HEAD
-const Trip = require ('../models/trips')
-=======
-const Trip =require ('../models/trips');
->>>>>>> 3c110c26dde7f1746728ed840f2d7174845350f3
+const Trip = require ('../models/trips');
+
 
 //POST selected trip in database
 router.post('/', function(req, res) {
@@ -52,5 +49,12 @@ Selectedtrip.updateMany(
     )
     .then(() => res.json({result:true, message:"Payé !"}))
 })
+
+//GET all bookings
+router.get('/booking', function (req,res){
+    Selectedtrip.find({isPaid: true})
+    .populate('trip')
+    .then(data => res.json({result : true, bookings: data}))
+    })
 
 module.exports = router;
