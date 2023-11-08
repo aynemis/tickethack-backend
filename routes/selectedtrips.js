@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const Selectedtrip = require ('../models/selectedtrips');
+const Trip = require ('../models/trips')
 
 //POST selected trip in database
 router.post('/', function(req, res) {
@@ -20,22 +21,16 @@ router.post('/', function(req, res) {
 
 
 // DELETE to delete trip from database
-// router.delete('/', (req, res) => {
-//   Selectedtrip.deleteOne
-// });
 
 
 router.delete('/', (req, res) => {
-  Selectedtrip.deleteOne({
-    journey: { $regex: new RegExp(req.body.journey, "i")},time: { $regex: new RegExp(req.body.time) } ,price: { $regex: new RegExp(req.body.price) },
-  }).then(deleteDoc => {
+  Selectedtrip.deleteOne({_id:req.body.id}).then(deleteDoc => {
     if(deleteDoc.deletedCount > 0){
-      Trip.find().then(data => {
-        res.json({Trip: data})
+     Selectedtrip.find().then(data => {
+        res.json({data})
       })
     }
   })
-  });
-
+});
 
 module.exports = router;
