@@ -1,0 +1,12 @@
+function totalPrice (trips) {
+    let total = 0;
+  
+    for (let i = 0; i < trips.length; i++) {
+      
+      total += trips[i].price;
+    }
+  
+    return total;
+  }
+
+  module.exports = {totalPrice};
