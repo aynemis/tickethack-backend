@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
 });
 
 // DELETE to delete trip from database
-router.delete('/', (req, res) => {
+router.delete('/cart', (req, res) => {
   Selectedtrip.deleteOne({_id:req.body.id}).then(deleteDoc => {
     if(deleteDoc.deletedCount > 0){
      Selectedtrip.find().then(data => {
@@ -48,5 +48,12 @@ Selectedtrip.updateMany(
     )
     .then(() => res.json({result:true, message:"Payé !"}))
 })
+
+//GET all bookings
+router.get('/booking', function (req,res){
+    Selectedtrip.find({isPaid: true})
+    .populate('trip')
+    .then(data => res.json({result : true, bookings: data}))
+    })
 
 module.exports = router;
