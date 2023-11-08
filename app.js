@@ -7,6 +7,7 @@ require('./models/connection');
 
 var indexRouter = require('./routes/index');
 var tripRouter = require('./routes/trip');
+var selectedtripsRouter = require('./routes/selectedtrips');
 
 var app = express();
 const cors = require('cors');
@@ -21,5 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/trip', tripRouter);
+app.use('/selectedtrips', selectedtripsRouter);
 
 module.exports = app;
