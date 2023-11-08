@@ -3,7 +3,7 @@ function totalPrice (trips) {
   
     for (let i = 0; i < trips.length; i++) {
       
-      total += trips[i].price;
+      total += trips[i].trip.price;
     }
   
     return total;
