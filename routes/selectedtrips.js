@@ -29,4 +29,13 @@ router.get('/cart', function (req,res){
     })
 })
 
+//UPDATE trips to paid
+router.put('/bookings', function (req,res){
+Selectedtrip.updateMany(
+    {},
+    {isPaid: true},
+    )
+    .then(() => res.json({result:true, message:"Payé !"}))
+})
+
 module.exports = router;
