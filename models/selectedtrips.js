@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 
 const selectedtripSchema = mongoose.Schema({
-    journey: String,
-    time : String,
-    price: Number,
+    trip: {type:mongoose.Schema.Types.ObjectId, ref:'trips'},
     isPaid: Boolean,
 });
 
