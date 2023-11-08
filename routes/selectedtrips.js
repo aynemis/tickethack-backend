@@ -27,6 +27,8 @@ router.delete('/cart', (req, res) => {
      Selectedtrip.find().then(data => {
         res.json({data})
       })
+    }else {
+      res.json({error: "could not delete"})
     }
   })
 });
