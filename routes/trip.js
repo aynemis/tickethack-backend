@@ -11,7 +11,7 @@ router.post('/', function(req, res) {
     res.json({result : false, error : "Missing or empty fields"})
   }
   else{
-    Trip.find({departure: { $regex: new RegExp(req.body.departure) } , arrival: { $regex: new RegExp(req.body.arrival) }, date: {$gte: moment(req.body.date).startOf('day'), $lte: moment(req.body.date).endOf('day')}})
+    Trip.find({departure: { $regex: new RegExp(req.body.departure)} , arrival: { $regex: new RegExp(req.body.arrival) }, date: {$gte: moment(req.body.date).startOf('day'), $lte: moment(req.body.date).endOf('day')}})
   .then(data => { 
     if (data.length>0){
       res.json({result : true , trips : data});
